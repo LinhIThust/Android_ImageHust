@@ -2,6 +2,7 @@ package com.example.lotte1.activities;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -23,14 +24,14 @@ public class HistoryActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_history);
         rvStudent = findViewById(R.id.rv_student);
-
+        rvStudent.setItemAnimator(new DefaultItemAnimator());
         studentModels = RealmHandle.getInstance().getAll();
         studentAdapter = new StudentAdapter(studentModels);
 
-        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 4);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(this, 2);
         LinearLayoutManager linearLayoutManager = new LinearLayoutManager(this,LinearLayoutManager.HORIZONTAL,false);
-        //rvStudent.setLayoutManager(gridLayoutManager);
-        rvStudent.setLayoutManager(linearLayoutManager);
+        rvStudent.setLayoutManager(gridLayoutManager);
+       // rvStudent.setLayoutManager(linearLayoutManager);
         rvStudent.setAdapter(studentAdapter);
     }
 }
